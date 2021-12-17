@@ -1,0 +1,43 @@
+.board {
+    width: 500px; 
+    height: 500px; 
+    background-color: aquamarine; 
+    left: 0px; 
+    top: 0px;
+    border: 10px solid brown;
+}
+
+.snake {
+    width: 10px; 
+    height: 10px; 
+    background-color: black; 
+    position: absolute; 
+    left: 250px; 
+    top: 250px;
+    border-radius: 4px;
+}
+
+.prey{
+    width: 10px; 
+    height: 10px; 
+    background-color: red; 
+    position: absolute; 
+    left: 10px; 
+    top: 10px;
+    display: none;
+    border-radius: 4px;
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+  }

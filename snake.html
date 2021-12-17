@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="snake.js"></script>
+    <link rel="stylesheet" href="snake.css">
+</head>
+
+<body style="padding: 0; margin: 0;">
+    <div class = "board" id="board">
+        <div id="snake" class="snake"></div>
+        <div id="prey" class="prey"></div>
+    </div>
+    <h1 id="score" style="text-align: center; width: 512px;">Score:0</h1>
+    <h1 id="result" style="text-align: center; width: 512px;"></h1>
+    <div style="width: 520px; text-align: center;">
+        <button class="button" onclick="start()" id="start" >Start</button>
+        <button class="button" onclick="pause()" id="pause" style="background-color: #008CBA;">Pause</button>
+        <button class="button" onclick="reset()" style="background-color: #f44336;">Reset</button>
+    </div> 
+    <div style="width: 520px; text-align: center;">   
+        <button class="button" onclick="upwd()">Up</button>
+    </div>
+    <div style="width: 520px; text-align: center;">
+        <button class="button" onclick="bwd()">Lt</button>
+        <button class="button" onclick="dnwd()">Dn</button>
+        <button class="button" onclick="fwd()">Rt</button>
+    </div>
+</body>
+
+</html>
