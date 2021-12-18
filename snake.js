@@ -1,4 +1,6 @@
-var x = 10, y = 10, snakex = 250, snakey = 250, interval, score = 0, isStart = false, isPause = false, direction = 0;
+var x = 10, y = 10, snakex = 250, snakey = 250, interval, score = 0, isStart = false, isPause = false, direction = 0, id1 = 2;
+var x_arr = [250, 240];
+var y_arr = [250, 240];
 
 function start() {
     setScore();     
@@ -48,12 +50,32 @@ function forward() {
     if (snakex <= 490) {
         direction = 0;
         snakex += 10;
-        document.getElementById("snake").style.left = snakex + "px";
+        document.getElementById("s0").style.left = snakex + "px";
         if (snakex == x*10 && snakey == y*10) {
             score += 10;
             setScore();
             setPrey();
+            var newNode = document.createElement("div");
+            newNode.id = "s"+id1;
+            newNode.className = "snake1";
+            id1++;
+            document.getElementById("snake").appendChild(newNode);
+            for (var i=x_arr.length; i>0; i--) {
+                x_arr[i] = x_arr[i-1];
+                y_arr[i] = y_arr[i-1];
+                document.getElementById("s"+i).style.left = x_arr[i] + "px";
+                document.getElementById("s"+i).style.top = y_arr[i] + "px";
+            }
         }
+        else {
+            for (var i=x_arr.length-1; i>0; i--) {
+                x_arr[i] = x_arr[i-1];
+                y_arr[i] = y_arr[i-1];
+                document.getElementById("s"+i).style.left = x_arr[i] + "px";
+                document.getElementById("s"+i).style.top = y_arr[i] + "px";
+            }
+        }
+        x_arr[0] = snakex; y_arr[0] = snakey;
     }
     else {
         clearInterval(interval);
@@ -65,12 +87,34 @@ function backward() {
     if (snakex >= 20) {
         direction = 1;
         snakex -= 10;
-        document.getElementById("snake").style.left = snakex + "px";
+        document.getElementById("s0").style.left = snakex + "px";
         if (snakex == x*10 && snakey == y*10) {
             score += 10;
             setScore();
             setPrey();
+            var newNode = document.createElement("div");
+            newNode.id = "s"+id1;
+            newNode.className = "snake1";
+            id1++;
+            document.getElementById("snake").appendChild(newNode);
+            for (var i=x_arr.length; i>0; i--) {
+                x_arr[i] = x_arr[i-1];
+                y_arr[i] = y_arr[i-1];
+                document.getElementById("s"+i).style.left = x_arr[i] + "px";
+                document.getElementById("s"+i).style.top = y_arr[i] + "px";
+            }
         }
+        else {
+            for (var i=x_arr.length-1; i>0; i--) {
+                x_arr[i] = x_arr[i-1];
+                y_arr[i] = y_arr[i-1];
+                var id = "s"+i;
+                // console.log(id);
+                document.getElementById("s"+i).style.left = x_arr[i] + "px";
+                document.getElementById("s"+i).style.top = y_arr[i] + "px";
+            }
+        }
+        x_arr[0] = snakex; y_arr[0] = snakey;
     }
     else {
         clearInterval(interval);
@@ -83,12 +127,34 @@ function up() {
     if (snakey >= 20) {
         direction = 2;
         snakey -= 10;
-        document.getElementById("snake").style.top = snakey + "px";
+        document.getElementById("s0").style.top = snakey + "px";
         if (snakex == x*10 && snakey == y*10) {
             score += 10;
             setScore();
             setPrey();
+            var newNode = document.createElement("div");
+            newNode.id = "s"+id1;
+            newNode.className = "snake1";
+            id1++;
+            document.getElementById("snake").appendChild(newNode);
+            for (var i=x_arr.length; i>0; i--) {
+                x_arr[i] = x_arr[i-1];
+                y_arr[i] = y_arr[i-1];
+                document.getElementById("s"+i).style.left = x_arr[i] + "px";
+                document.getElementById("s"+i).style.top = y_arr[i] + "px";
+            }
         }
+        else {
+            for (var i=x_arr.length-1; i>0; i--) {
+                x_arr[i] = x_arr[i-1];
+                y_arr[i] = y_arr[i-1];
+                var id = "s"+i;
+                // console.log(id);
+                document.getElementById("s"+i).style.left = x_arr[i] + "px";
+                document.getElementById("s"+i).style.top = y_arr[i] + "px";
+            }
+        }
+        x_arr[0] = snakex; y_arr[0] = snakey;
     }
     else {
         clearInterval(interval);
@@ -100,12 +166,34 @@ function down() {
     if (snakey <= 490) {
         direction = 3;
         snakey += 10;
-        document.getElementById("snake").style.top = snakey + "px";
+        document.getElementById("s0").style.top = snakey + "px";
         if (snakex == x*10 && snakey == y*10) {
             score += 10;
             setScore();
             setPrey();
+            var newNode = document.createElement("div");
+            newNode.id = "s"+id1;
+            newNode.className = "snake1";
+            id1++;
+            document.getElementById("snake").appendChild(newNode);
+            for (var i=x_arr.length; i>0; i--) {
+                x_arr[i] = x_arr[i-1];
+                y_arr[i] = y_arr[i-1];
+                document.getElementById("s"+i).style.left = x_arr[i] + "px";
+                document.getElementById("s"+i).style.top = y_arr[i] + "px";
+            }
         }
+        else {
+            for (var i=x_arr.length-1; i>0; i--) {
+                x_arr[i] = x_arr[i-1];
+                y_arr[i] = y_arr[i-1];
+                var id = "s"+i;
+                // console.log(id);
+                document.getElementById("s"+i).style.left = x_arr[i] + "px";
+                document.getElementById("s"+i).style.top = y_arr[i] + "px";
+            }
+        }
+        x_arr[0] = snakex; y_arr[0] = snakey;
     }
     else {
         clearInterval(interval);
@@ -171,12 +259,23 @@ function pause(){
 function reset() {
     clearInterval(interval);
     document.getElementById("result").innerHTML = "";
-    document.getElementById('prey').style.display = "none";
+    document.getElementById("prey").style.display = "none";
     document.getElementById("prey").style.left = 10 + 'px';
     document.getElementById("prey").style.top = 10 +'px';
-    document.getElementById("snake").style.left = 250 + "px";
-    document.getElementById("snake").style.top = 250 + "px";
     snakex = 250; snakey = 250;
+    document.getElementById("s0").style.left = 250 + "px";
+    document.getElementById("s0").style.top = 250 + "px";
+    document.getElementById("s1").style.left = 240 + "px";
+    document.getElementById("s1").style.top = 250 + "px";
+    x_arr[0] = snakex; y_arr[0] = snakey;
+    x_arr[1] = snakex-10; y_arr[1] = snakey;
+    var len = x_arr.length;
+    for (var i=2; i<len; i++) {
+        x_arr.pop();
+        y_arr.pop();
+        document.getElementById("s"+i).remove();
+    }
+    id1 = 2;
     score = 0;
     setScore();
     isStart = false;
