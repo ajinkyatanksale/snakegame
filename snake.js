@@ -1,4 +1,5 @@
-var x = 10, y = 10, snakex = 250, snakey = 250, interval, score = 0, isStart = false, isPause = false, direction = 0;
+var x = 10, y = 10, snakex = 250, snakey = 250, interval, score = 0, isStart = false, isPause = false, direction = 0, id1 = 2, valid = true;
+var position = [{x: 250, y: 250}, {x: 240, y: 250}]
 
 function start() {
     setScore();     
@@ -45,15 +46,32 @@ function dnwd() {
 }
 
 function forward() {
-    if (snakex <= 490) {
+    isValid();
+    if (snakex <= 490 && valid) {
+        
         direction = 0;
         snakex += 10;
-        document.getElementById("snake").style.left = snakex + "px";
+        document.getElementById("s0").style.left = snakex + "px";
         if (snakex == x*10 && snakey == y*10) {
             score += 10;
             setScore();
             setPrey();
+            var newNode = document.createElement("div");
+            newNode.id = "s"+id1;
+            newNode.className = "snake1";
+            id1++;
+            document.getElementById("snake").appendChild(newNode);
+            position.push({x:0, y:0});
         }
+
+        for (var i=position.length-1; i>0; i--) {
+            position[i].x = position[i-1].x;
+            position[i].y = position[i-1].y;
+            document.getElementById("s"+i).style.left = position[i].x + "px";
+            document.getElementById("s"+i).style.top = position[i].y + "px";
+        }
+        
+        position[0].x = snakex; position[0].y = snakey;
     }
     else {
         clearInterval(interval);
@@ -62,15 +80,31 @@ function forward() {
 }
 
 function backward() {
-    if (snakex >= 20) {
+    isValid();
+    if (snakex >= 20 && valid) {
         direction = 1;
         snakex -= 10;
-        document.getElementById("snake").style.left = snakex + "px";
+        document.getElementById("s0").style.left = snakex + "px";
         if (snakex == x*10 && snakey == y*10) {
             score += 10;
             setScore();
             setPrey();
+            var newNode = document.createElement("div");
+            newNode.id = "s"+id1;
+            newNode.className = "snake1";
+            id1++;
+            document.getElementById("snake").appendChild(newNode);
+            position.push({x:0, y:0});
         }
+        
+        for (var i=position.length-1; i>0; i--) {
+            position[i].x = position[i-1].x;
+            position[i].y = position[i-1].y;
+            document.getElementById("s"+i).style.left = position[i].x + "px";
+            document.getElementById("s"+i).style.top = position[i].y + "px";
+        }
+        
+        position[0].x = snakex; position[0].y = snakey;
     }
     else {
         clearInterval(interval);
@@ -80,15 +114,31 @@ function backward() {
 }
 
 function up() {
-    if (snakey >= 20) {
+    isValid();
+    if (snakey >= 20 && valid) {
         direction = 2;
         snakey -= 10;
-        document.getElementById("snake").style.top = snakey + "px";
+        document.getElementById("s0").style.top = snakey + "px";
         if (snakex == x*10 && snakey == y*10) {
             score += 10;
             setScore();
             setPrey();
+            var newNode = document.createElement("div");
+            newNode.id = "s"+id1;
+            newNode.className = "snake1";
+            id1++;
+            document.getElementById("snake").appendChild(newNode);
+            position.push({x:0, y:0});
         }
+        
+        for (var i=position.length-1; i>0; i--) {
+            position[i].x = position[i-1].x;
+            position[i].y = position[i-1].y;
+            document.getElementById("s"+i).style.left = position[i].x + "px";
+            document.getElementById("s"+i).style.top = position[i].y + "px";
+        }
+        
+        position[0].x = snakex; position[0].y = snakey;
     }
     else {
         clearInterval(interval);
@@ -97,15 +147,31 @@ function up() {
 }
 
 function down() {
-    if (snakey <= 490) {
+    isValid();
+    if (snakey <= 490 && valid) {
         direction = 3;
         snakey += 10;
-        document.getElementById("snake").style.top = snakey + "px";
+        document.getElementById("s0").style.top = snakey + "px";
         if (snakex == x*10 && snakey == y*10) {
             score += 10;
             setScore();
             setPrey();
+            var newNode = document.createElement("div");
+            newNode.id = "s"+id1;
+            newNode.className = "snake1";
+            id1++;
+            document.getElementById("snake").appendChild(newNode);
+            position.push({x:0, y:0});
         }
+       
+        for (var i=position.length-1; i>0; i--) {
+            position[i].x = position[i-1].x;
+            position[i].y = position[i-1].y;
+            document.getElementById("s"+i).style.left = position[i].x + "px";
+            document.getElementById("s"+i).style.top = position[i].y + "px";
+        }
+        
+        position[0].x = snakex; position[0].y = snakey;
     }
     else {
         clearInterval(interval);
@@ -120,6 +186,14 @@ function setScore() {
 function gameOver() {
     document.getElementById("result").innerHTML = "Game Over";
     isStart = false;
+}
+
+function isValid() {
+    for (var pos = 1; pos < position.length; pos++) {
+        if (snakex == position[pos].x && snakey == position[pos].y) {
+            valid = false;
+        }
+    }
 }
 
 document.onkeydown = checkKey;
@@ -171,15 +245,26 @@ function pause(){
 function reset() {
     clearInterval(interval);
     document.getElementById("result").innerHTML = "";
-    document.getElementById('prey').style.display = "none";
+    document.getElementById("prey").style.display = "none";
     document.getElementById("prey").style.left = 10 + 'px';
     document.getElementById("prey").style.top = 10 +'px';
-    document.getElementById("snake").style.left = 250 + "px";
-    document.getElementById("snake").style.top = 250 + "px";
     snakex = 250; snakey = 250;
+    document.getElementById("s0").style.left = 250 + "px";
+    document.getElementById("s0").style.top = 250 + "px";
+    document.getElementById("s1").style.left = 240 + "px";
+    document.getElementById("s1").style.top = 250 + "px";
+    position[0].x = snakex; position[0].y = snakey;
+    position[1].x = snakex-10; position[1].y = snakey;
+    var len = position.length;
+    for (var i=2; i<len; i++) {
+        position.pop();
+        document.getElementById("s"+i).remove();
+    }
+    id1 = 2;
     score = 0;
     setScore();
     isStart = false;
+    valid = true;
     direction = 0;
     document.getElementById("start").disabled = false;
 }

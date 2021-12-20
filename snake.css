@@ -16,6 +16,15 @@
     top: 250px;
     border-radius: 4px;
 }
+.snake1 {
+    width: 10px; 
+    height: 10px; 
+    background-color: black; 
+    position: absolute; 
+    left: 240px; 
+    top: 250px;
+    border-radius: 4px;
+}
 
 .prey{
     width: 10px; 
