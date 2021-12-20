@@ -1,7 +1,5 @@
-var x = 10, y = 10, snakex = 250, snakey = 250, interval, score = 0, isStart = false, isPause = false, direction = 0, id1 = 2;
+var x = 10, y = 10, snakex = 250, snakey = 250, interval, score = 0, isStart = false, isPause = false, direction = 0, id1 = 2, valid = true;
 var position = [{x: 250, y: 250}, {x: 240, y: 250}]
-// var x_arr = [250, 240];
-// var y_arr = [250, 240];
 
 function start() {
     setScore();     
@@ -48,7 +46,9 @@ function dnwd() {
 }
 
 function forward() {
-    if (snakex <= 490) {
+    isValid();
+    if (snakex <= 490 && valid) {
+        
         direction = 0;
         snakex += 10;
         document.getElementById("s0").style.left = snakex + "px";
@@ -61,7 +61,7 @@ function forward() {
             newNode.className = "snake1";
             id1++;
             document.getElementById("snake").appendChild(newNode);
-            position[position.length] = {x:0, y:0};
+            position.push({x:0, y:0});
         }
 
         for (var i=position.length-1; i>0; i--) {
@@ -80,7 +80,8 @@ function forward() {
 }
 
 function backward() {
-    if (snakex >= 20) {
+    isValid();
+    if (snakex >= 20 && valid) {
         direction = 1;
         snakex -= 10;
         document.getElementById("s0").style.left = snakex + "px";
@@ -93,7 +94,7 @@ function backward() {
             newNode.className = "snake1";
             id1++;
             document.getElementById("snake").appendChild(newNode);
-            position[position.length] = {x:0, y:0};
+            position.push({x:0, y:0});
         }
         
         for (var i=position.length-1; i>0; i--) {
@@ -113,7 +114,8 @@ function backward() {
 }
 
 function up() {
-    if (snakey >= 20) {
+    isValid();
+    if (snakey >= 20 && valid) {
         direction = 2;
         snakey -= 10;
         document.getElementById("s0").style.top = snakey + "px";
@@ -126,7 +128,7 @@ function up() {
             newNode.className = "snake1";
             id1++;
             document.getElementById("snake").appendChild(newNode);
-            position[position.length] = {x:0, y:0};
+            position.push({x:0, y:0});
         }
         
         for (var i=position.length-1; i>0; i--) {
@@ -145,7 +147,8 @@ function up() {
 }
 
 function down() {
-    if (snakey <= 490) {
+    isValid();
+    if (snakey <= 490 && valid) {
         direction = 3;
         snakey += 10;
         document.getElementById("s0").style.top = snakey + "px";
@@ -158,7 +161,7 @@ function down() {
             newNode.className = "snake1";
             id1++;
             document.getElementById("snake").appendChild(newNode);
-            position[position.length] = {x:0, y:0};
+            position.push({x:0, y:0});
         }
        
         for (var i=position.length-1; i>0; i--) {
@@ -183,6 +186,14 @@ function setScore() {
 function gameOver() {
     document.getElementById("result").innerHTML = "Game Over";
     isStart = false;
+}
+
+function isValid() {
+    for (var pos = 1; pos < position.length; pos++) {
+        if (snakex == position[pos].x && snakey == position[pos].y) {
+            valid = false;
+        }
+    }
 }
 
 document.onkeydown = checkKey;
@@ -253,6 +264,7 @@ function reset() {
     score = 0;
     setScore();
     isStart = false;
+    valid = true;
     direction = 0;
     document.getElementById("start").disabled = false;
 }
